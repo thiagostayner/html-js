@@ -6,9 +6,7 @@ const successMessage = document.querySelector('.success-message');
 let formEValido = false;
 
 function validaCampos (a, b){
-    const tamanhoCampoA = a.split('')
-    const tamanhoCampoB = b.split('')
-    return tamanhoCampoB.lenght > tamanhoCampoA.lenght;
+    return Number(b)  > Number(a);
 }
 
 form.addEventListener('submit', function(e){
@@ -30,11 +28,13 @@ form.addEventListener('submit', function(e){
     }
 });
 
-campoB.addEventListener('keyup', function(){
+campoB.addEventListener('input', function() {
     formEValido = validaCampos(campoA.value, campoB.value);
-    if(!formEValido){
+    if (!formEValido) {
         errorMessage.style.display = 'block';
-    } else{
-        errorMessage.style.display = 'none'
+        campoB.classList.add('error');
+    } else {
+        errorMessage.style.display = 'none';
+        campoB.classList.remove('error');
     }
 });
